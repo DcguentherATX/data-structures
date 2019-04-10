@@ -17,7 +17,7 @@
     <script src="../lib/underscore/underscore.js"></script>
     <script>
       $(function() {
-        $.each(['functional', 'functional-shared', 'prototypal', 'pseudoclassical', 'es6'], function(i, variant) {
+        $.each(['functional'], function(i, variant) {
           $('<iframe src="' + window.location.toString().replace('.html', 'Section.html?') + variant + '" />').appendTo(document.body);
         });
 
@@ -30,3 +30,4 @@
   <body>
   </body>
 </html>
+<!-- ['functional', 'functional-shared', 'prototypal', 'pseudoclassical', 'es6'] -->
