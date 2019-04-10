@@ -32,6 +32,3 @@ var Queue = function() {
 
   return someInstance;
 };
-
-var q1 = Queue()
-q1.enqueue('a');
