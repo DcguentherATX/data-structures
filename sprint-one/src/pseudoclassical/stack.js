@@ -21,4 +21,3 @@ Stack.prototype.size = function() {
   return this.count;
 };
 
-// var Stanley = new Stack();
