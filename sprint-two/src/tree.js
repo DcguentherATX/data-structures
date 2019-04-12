@@ -20,25 +20,21 @@ treeMethods.contains = function(target) {
 
   
   var checkChildren = function(tree, target) {
-    for (var i = 0; i < tree.children.length; i++) {
-      var child = tree.children[i];      
-      if (child === target) {
-        return true;
-      }
-      else if (child.children.length === 0) {
-        return false;    
-      }
-      else if (child.children.length > 0) {
-        return checkChildren(child, target);
-      }
+
+    if (tree.value === target) {
+      return true;
     }
-  }
-  if (this.value === target) {
-    return true;
-  } else {
-    return checkChildren(this, target);
-  }
+    else {
+      for (let i = 0; i < tree.children.length; i ++) {
+        var subtreeResult = checkChildren(tree.children[i], target);
+        if (subtreeResult === true) {return true;}
+      }
+      return false; 
+    }
+  };
+  return checkChildren(this, target);
 };
+
 
 
 
