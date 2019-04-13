@@ -15,6 +15,7 @@ var LinkedList = function() {
     }    
   };
 
+
   list.removeHead = function() {
     if (list.head !== null) {
       var oldHead = list.head.value;

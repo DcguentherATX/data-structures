@@ -47,6 +47,13 @@ describe('hashTable', function() {
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
 
+  it('should not use Objects to store information in buckets', function() {
+    hashTable.insert('Magic', 'Johnson');
+    var index = getIndexBelowMaxForKey('Magic');
+    var bucket = hashTable._storage.get(index);
+    expect(typeof bucket === 'object').to.be.false;
+  });
+
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {
     _.each(people, function(person) {

@@ -73,6 +73,16 @@ BinarySearchTree.prototype.depthFirstLog = function(cb) {
   iterate(this);
 };
 
+BinarySearchTree.prototype.size = function() {
+  var count = 0;
+
+  var countTree = function(tree) {
+    count ++;
+  };
+  this.depthFirstLog(countTree);
+  return count;
+};
+
 /*
  * Complexity: What is the time complexity of the above functions?
  */

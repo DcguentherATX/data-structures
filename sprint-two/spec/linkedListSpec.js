@@ -16,7 +16,7 @@ describe('linkedList', function() {
     expect(linkedList.contains).to.be.a('function');
   });
 
-  it('should designate a new tail when new nodes are added', function() {
+  it('should designate a new tail when new nodes are added to tail', function() {
     linkedList.addToTail(4);
     expect(linkedList.tail.value).to.equal(4);
     linkedList.addToTail(5);
@@ -30,7 +30,7 @@ describe('linkedList', function() {
     linkedList.removeHead();
     expect(linkedList.head.value).to.equal(5);
   });
-
+  
   it('should return the value of the former head when removeHead is called', function() {
     linkedList.addToTail(4);
     expect(linkedList.removeHead()).to.equal(4);
@@ -50,6 +50,13 @@ describe('linkedList', function() {
     linkedList.removeHead();
     expect(linkedList.contains(4)).to.equal(false);
   });
+
+  it('the head and tail properties should point to objects', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    expect(typeof linkedList.head).to.equal('object');
+    expect(typeof linkedList.tail).to.equal('object');
+});
 
   // add more tests here to test the functionality of linkedList
 });
