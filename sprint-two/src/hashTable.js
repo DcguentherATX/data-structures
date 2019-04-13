@@ -8,32 +8,49 @@ var HashTable = function() {
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var tuple = [k, v];
-  if (this._storage.get(index) === undefined) {
-    this._storage.set(index, tuple);
+  var bucket = this._storage.get(index);
+  var newBucket = [];
+
+  //possible problem w/ bucket[0] === k for larger use
+  if (bucket === undefined || bucket[0] === k) {
+    newBucket.push(tuple);
+    this._storage.set(index, newBucket);    
   }
   else {
-    var oldTuple = this._storage.get(index);
-    var newTuple = tuple;
-    var input = [newTuple, oldTuple];
-    console.log(input);
-    this._storage.set(index, input);
-    console.log(this._storage);
+    newBucket.push(tuple);
+    for (let i = 0; i < bucket.length; i ++) {
+      newBucket.push(bucket[i]);
+    }
+    this._storage.set(index, newBucket);
   }
 };
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  return this._storage.get(index)[1];
+  var bucket = this._storage.get(index);
+  if (bucket.length === 1) {
+    return bucket[0][1];
+  }
+  else if (bucket.length > 1) {
+    for (let i = 0; i < bucket.length; i ++){
+      if (bucket[i][0] === k) {
+        return bucket[i][1];
+      }
+    }
+  }
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  var target = this._storage.get(index);
+  var bucket = this._storage.get(index);
   
   var checkKeys = function(element, i, storage){
-    if(target[0] === k) {      
-      delete target[1];
+    for (let i = 0; i < bucket.length; i ++) {
+      if(bucket[i][0] === k) {      
+       delete bucket[i][1];
+      }
     }
+    return;
   };
 
   this._storage.each(checkKeys);
@@ -43,6 +60,7 @@ HashTable.prototype.remove = function(k) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * Quadratic
  */
 
 
