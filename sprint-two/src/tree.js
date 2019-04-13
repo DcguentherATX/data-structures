@@ -35,6 +35,23 @@ treeMethods.contains = function(target) {
   return checkChildren(this, target);
 };
 
+treeMethods.countChildren = function() {
+  var count = 0;
+
+  var numberOfKids = function(tree) {
+    if(tree.children.length > 0) {
+      for(var i = 0; i < tree.children.length; i++) {
+        count ++;
+        numberOfKids(tree.children[i]);
+      }
+    }
+  };
+
+  numberOfKids(this);
+  console.log(this);
+  return count;
+};
+
 
 
 

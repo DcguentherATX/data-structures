@@ -23,6 +23,10 @@ setPrototype.remove = function(item) {
   }
 };
 
+setPrototype.size = function() {
+  return this._storage.length;
+};
+
 /*
  * Complexity: What is the time complexity of the above functions?
  */

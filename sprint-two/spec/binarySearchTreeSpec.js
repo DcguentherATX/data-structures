@@ -37,4 +37,11 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3, 7]);
   });
+
+  it('should have a functional .size method', function() {
+    binarySearchTree.insert(4);
+    binarySearchTree.insert(128);
+    binarySearchTree.insert(256);
+    expect(binarySearchTree.size()).to.equal(4);
+  });
 });
